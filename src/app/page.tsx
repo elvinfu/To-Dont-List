@@ -14,7 +14,7 @@ export default async function Home() {
         <div className="flex-grow text-center">
           <h1 className="text-5xl">
             To-
-            <span className="font-bold">Don't </span>List
+            <span className="font-bold">Don't TEST </span>List
           </h1>
         </div>
         <NewTodoButton></NewTodoButton>
