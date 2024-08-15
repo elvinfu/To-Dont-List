@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+/*import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/db";
 
 export default async function handler(
@@ -13,3 +13,4 @@ export default async function handler(
 
   res.status(200).json({ success: true });
 }
+*/

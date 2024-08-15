@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { getTodos, removeTodo, toggleTodo } from "../hooks/useTodos";
 import { TodoItem } from "@/components/TodoItem";
 
 type Todo = {
@@ -13,39 +13,23 @@ type TodoListProps = {
   initialTodos: Todo[];
 };
 
-export default function TodoList({ initialTodos }: TodoListProps) {
-  const [todos, setTodos] = useState<Todo[]>(initialTodos);
+export default function TodoList() {
+  const { todos, isLoading, isError } = getTodos();
 
-  async function toggleTodo(id: string, complete: boolean) {
-    await fetch(`/api/toggleTodo`, {
-      method: "POST",
-      body: JSON.stringify({ id, complete }),
-    });
-
-    setTodos((todos) =>
-      todos.map((todo) => (todo.id === id ? { ...todo, complete } : todo))
-    );
-  }
-
-  async function deleteTodo(id: string) {
-    await fetch(`/api/deleteTodo`, {
-      method: "POST",
-      body: JSON.stringify({ id }),
-    });
-
-    setTodos((todos) => todos.filter((todo) => todo.id !== id));
-  }
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error loading todos.</div>;
 
   return (
-    <ul className="p1-4">
-      {todos.map((todo) => (
+    <div>
+      {todos.map((todo: Todo) => (
         <TodoItem
-          key={todo.id}
-          {...todo}
+          id={todo.id}
+          title={todo.title}
+          complete={todo.complete}
           toggleTodo={toggleTodo}
-          deleteTodo={deleteTodo}
+          removeTodo={removeTodo}
         />
       ))}
-    </ul>
+    </div>
   );
 }

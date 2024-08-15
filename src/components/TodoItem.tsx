@@ -2,15 +2,13 @@
 
 import { IconTrash } from "@tabler/icons-react";
 import React from "react";
-const SHAPES = ["square", "triangle"];
-const COLOR_DIGIT = "ABCDEF1234567890";
 
 type TodoItemProps = {
   id: string;
   title: string;
   complete: boolean;
   toggleTodo: (id: string, complete: boolean) => void;
-  deleteTodo: (id: string) => void;
+  removeTodo: (id: string) => void;
 };
 
 export function TodoItem({
@@ -18,11 +16,11 @@ export function TodoItem({
   title,
   complete,
   toggleTodo,
-  deleteTodo,
+  removeTodo,
 }: TodoItemProps) {
   return (
     <li className="flex gap-1 items-center">
-      <IconTrash size={24} onClick={() => deleteTodo(id)} />
+      <IconTrash size={24} onClick={() => removeTodo(id)} />
       <input
         id={id}
         type="checkbox"
