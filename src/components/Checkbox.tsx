@@ -3,13 +3,11 @@ import { IconSquare, IconSquareCheckFilled } from "@tabler/icons-react";
 
 interface IconCheckBoxProps {
   checked: boolean;
-  onClick: () => void;
 }
 
-const IconCheckBox: React.FC<IconCheckBoxProps> = ({ checked, onClick }) => {
+const IconCheckBox: React.FC<IconCheckBoxProps> = ({ checked }) => {
   return (
     <div
-      onClick={onClick}
       style={{
         cursor: "pointer",
         display: "inline-flex",
@@ -17,9 +15,9 @@ const IconCheckBox: React.FC<IconCheckBoxProps> = ({ checked, onClick }) => {
       }}
     >
       {checked ? (
-        <IconSquareCheckFilled size={24} color="#9CA3AF" />
+        <IconSquareCheckFilled size={24} />
       ) : (
-        <IconSquare size={24} />
+        <IconSquare size={24} color="#9CA3AF" />
       )}
     </div>
   );

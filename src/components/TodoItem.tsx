@@ -13,9 +13,12 @@ interface TodoItemProps {
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isTrashHovered, setIsTrashHovered] = useState(false);
+
   const router = useRouter();
 
-  const handleDeleteTodo = async (id: string) => {
+  const handleDeleteTodo = async (id: string, event: React.MouseEvent) => {
+    event?.stopPropagation();
     await deleteTodo(id);
     router.refresh();
   };
@@ -27,22 +30,22 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   };
 
   return (
-    <li className="flex gap-2 items-center" style={{ userSelect: "none" }}>
-      <input
-        id={todo.id}
-        type="checkbox"
-        className="hidden peer"
-        checked={todo.completed}
-        onChange={() => handleToggleTodo(todo)}
-      />
-      <IconCheckBox
-        checked={todo.completed}
-        onClick={() => handleToggleTodo(todo)}
-      ></IconCheckBox>
+    <li
+      className={`flex gap-2 items-center bg-opacity-5 ${
+        isHovered ? "bg-slate-400" : "bg-slate-100"
+      } rounded-lg p-2`}
+      style={{ userSelect: "none" }}
+      onClick={() => handleToggleTodo(todo)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <IconCheckBox checked={todo.completed}></IconCheckBox>
 
       <label
         htmlFor={todo.id}
-        className="peer-checked:line-through peer-checked:text-slate-400 text-2xl"
+        className={`text-2xl ${
+          todo.completed ? "line-through" : "text-slate-400"
+        } `}
       >
         {todo.text}
       </label>
@@ -50,11 +53,11 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
       {!todo.completed && (
         <IconTrash
           className="ml-auto"
-          color={isHovered ? "red" : "white"}
+          color={isTrashHovered ? "red" : "white"}
           size={24}
-          onClick={() => handleDeleteTodo(todo.id)}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          onClick={(event) => handleDeleteTodo(todo.id, event)}
+          onMouseEnter={() => setIsTrashHovered(true)}
+          onMouseLeave={() => setIsTrashHovered(false)}
         ></IconTrash>
       )}
     </li>

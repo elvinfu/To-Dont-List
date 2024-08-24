@@ -52,7 +52,7 @@ export default function TodoForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex gap-2 flex-col py-3"
+      className="flex gap-2 flex-col"
       style={{ userSelect: "none" }}
     >
       <div className="relative">
@@ -64,7 +64,7 @@ export default function TodoForm() {
           onChange={handleChange}
           onFocus={() => setIsSelected(true)}
           onBlur={() => setIsSelected(false)}
-          className="text-4xl bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100 w-full"
+          className="text-3xl bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100 w-full"
           placeholder={isSelected ? "Add task" : "+  Add task"}
           style={setLineThrough()}
         />
