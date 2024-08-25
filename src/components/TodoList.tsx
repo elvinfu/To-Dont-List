@@ -15,8 +15,8 @@ const TodoList: React.FC<TodoListProps> = ({ todos }) => {
         {todos
           .filter((todo) => todo.completed)
           .map((todo) => (
-            <div className="py-0.5">
-              <TodoItem key={todo.id} todo={todo}></TodoItem>
+            <div key={todo.id} className="py-0.5">
+              <TodoItem todo={todo}></TodoItem>
             </div>
           ))}
       </ul>
@@ -25,8 +25,8 @@ const TodoList: React.FC<TodoListProps> = ({ todos }) => {
         {todos
           .filter((todo) => !todo.completed)
           .map((todo) => (
-            <div className="py-0.5">
-              <TodoItem key={todo.id} todo={todo}></TodoItem>
+            <div key={todo.id} className="py-0.5">
+              <TodoItem todo={todo}></TodoItem>
             </div>
           ))}
       </ul>

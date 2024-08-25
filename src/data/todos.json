@@ -1,23 +1,8 @@
 {
   "tasks": [
     {
-      "id": "471d8839-eaa9-4ca2-b04c-461ecd8e1870",
-      "text": "Don't help me",
-      "completed": true
-    },
-    {
-      "id": "d0428145-ad66-4e0a-9674-82a520c31d08",
-      "text": "Don't take out the trash",
-      "completed": true
-    },
-    {
-      "id": "c8313c9a-7487-483c-b232-ba45959892c8",
-      "text": "Don't take the kids home",
-      "completed": true
-    },
-    {
-      "id": "ffc3c672-cc4e-4790-8a0c-e5e2676ca4b2",
-      "text": "Don't buy groceries",
+      "id": "cd04a6d8-2855-4338-941f-cc20c283f9bb",
+      "text": "Don't test",
       "completed": true
     }
   ]

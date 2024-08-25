@@ -9,7 +9,7 @@ export default async function Home() {
         <div className="flex-grow text-center">
           <h1 className="text-5xl">
             To-
-            <span className="font-bold">Don't </span>List
+            <span className="font-bold">Don&apos;t </span>List
           </h1>
         </div>
       </header>
@@ -18,18 +18,6 @@ export default async function Home() {
           <TodoList todos={todos} />
         </div>
       </div>
-      <script
-        data-name="BMC-Widget"
-        data-cfasync="false"
-        src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-        data-id="fuelvin"
-        data-description="Support me on Buy me a coffee!"
-        data-message="*E-sips coffee* mmmmm"
-        data-color="#FF813F"
-        data-position="Right"
-        data-x_margin="18"
-        data-y_margin="18"
-      ></script>
     </>
   );
 }
