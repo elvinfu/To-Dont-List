@@ -1,11 +1,15 @@
 "use client";
 
-import { addTodo } from "@/api";
+import { addTodo } from "@/api2";
 import { useRouter } from "next/navigation";
 import { useState, FormEvent } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-export default function TodoForm() {
+interface TodoFormProps {
+  setReloadTodos: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function TodoForm({ setReloadTodos }: TodoFormProps) {
   const [inputValue, setInputValue] = useState<string>("");
   const [isSelected, setIsSelected] = useState(false);
   const router = useRouter();
@@ -40,13 +44,23 @@ export default function TodoForm() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await addTodo({
+    const newTodo = {
       id: uuidv4(),
       text: displayValue,
       completed: true,
+    };
+    const res = await fetch("/api/todos", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newTodo),
     });
+
+    if (!res.ok) {
+      throw new Error("Failed to add new todo");
+    }
+
     setInputValue("");
-    router.refresh();
+    setReloadTodos((state: boolean) => !state);
   };
 
   return (

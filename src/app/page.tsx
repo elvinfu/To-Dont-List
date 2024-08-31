@@ -1,8 +1,22 @@
-import TodoList from "@/components/TodoList";
-import { getAllTodos } from "@/api";
+"use client"; // This makes the component a client component
 
-export default async function Home() {
-  const todos = await getAllTodos();
+import { useEffect, useState } from "react";
+import TodoList from "@/components/TodoList";
+import { ITask } from "@/types/tasks";
+
+export default function Home() {
+  const [todos, setTodos] = useState<ITask[]>([]); // Use useState to manage todos state
+  const [reloadTodos, setReloadTodos] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const res = await fetch("/api/todos", { method: "GET" }); // Fetch data from the API
+      const data = (await res.json()) as ITask[]; // Parse the response
+      setTodos(data); // Set the todos state
+    };
+    fetchTodos(); // Call the fetchTodos function when the component mounts
+  }, [reloadTodos]);
+
   return (
     <>
       <header className="flex justify-between items-center mb-0 mt-10">
@@ -15,7 +29,7 @@ export default async function Home() {
       </header>
       <div className="p-16">
         <div className="max-w-2xl mx-auto">
-          <TodoList todos={todos} />
+          <TodoList todos={todos} setReloadTodos={setReloadTodos} />
         </div>
       </div>
     </>
