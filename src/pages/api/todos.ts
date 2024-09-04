@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getAllTodos, addTodo, deleteTodo, toggleTodo } from "@/api2";
+import { getAllTodos, addTodo, deleteTodo, toggleTodo } from "@/utils";
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,10 +26,8 @@ export default async function handler(
         break;
 
       case "PUT":
-        console.log("2");
         const updatedTodo = await toggleTodo(req, res, req.body);
         res.status(200).json(updatedTodo);
-        console.log("4");
         break;
 
       default:

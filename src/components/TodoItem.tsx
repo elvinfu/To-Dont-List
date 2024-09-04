@@ -2,7 +2,6 @@
 
 import { ITask } from "@/types/tasks";
 import { IconTrash } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import IconCheckBox from "./Checkbox";
 
@@ -15,8 +14,6 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, setReloadTodos }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isTrashHovered, setIsTrashHovered] = useState(false);
 
-  const router = useRouter();
-
   const handleDeleteTodo = async (id: string, event: React.MouseEvent) => {
     event?.stopPropagation();
     await fetch(`/api/todos?id=${id}`, { method: "DELETE" });
@@ -24,13 +21,11 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, setReloadTodos }) => {
   };
 
   const handleToggleTodo = async (todo: ITask) => {
-    console.log("1");
     await fetch(`/api/todos`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(todo),
     });
-    console.log();
     setReloadTodos((state: boolean) => !state);
   };
 

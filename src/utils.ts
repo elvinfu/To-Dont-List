@@ -1,5 +1,5 @@
 import { ITask } from "./types/tasks";
-import createClient from "../utils/supabase/api"; // Adjust the path according to your project structure
+import createClient from "../utils/supabase/api";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export const getAllTodos = async (
@@ -67,7 +67,6 @@ export const toggleTodo = async (
     console.error("Error updating todo:", error.message);
     throw new Error(error.message);
   }
-  console.log("3");
 
   return updatedTodo;
 };

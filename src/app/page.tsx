@@ -1,20 +1,20 @@
-"use client"; // This makes the component a client component
+"use client";
 
 import { useEffect, useState } from "react";
 import TodoList from "@/components/TodoList";
 import { ITask } from "@/types/tasks";
 
 export default function Home() {
-  const [todos, setTodos] = useState<ITask[]>([]); // Use useState to manage todos state
+  const [todos, setTodos] = useState<ITask[]>([]);
   const [reloadTodos, setReloadTodos] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const res = await fetch("/api/todos", { method: "GET" }); // Fetch data from the API
-      const data = (await res.json()) as ITask[]; // Parse the response
-      setTodos(data); // Set the todos state
+      const res = await fetch("/api/todos", { method: "GET" });
+      const data = (await res.json()) as ITask[];
+      setTodos(data);
     };
-    fetchTodos(); // Call the fetchTodos function when the component mounts
+    fetchTodos();
   }, [reloadTodos]);
 
   return (

@@ -1,7 +1,5 @@
 "use client";
 
-import { addTodo } from "@/api2";
-import { useRouter } from "next/navigation";
 import { useState, FormEvent } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -12,7 +10,6 @@ interface TodoFormProps {
 export default function TodoForm({ setReloadTodos }: TodoFormProps) {
   const [inputValue, setInputValue] = useState<string>("");
   const [isSelected, setIsSelected] = useState(false);
-  const router = useRouter();
 
   const handleKeyDown = (event: any) => {
     const { key, target } = event;
