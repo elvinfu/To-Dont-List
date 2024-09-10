@@ -4,6 +4,7 @@ import { ITask } from "@/types/tasks";
 import { IconTrash } from "@tabler/icons-react";
 import React, { useState } from "react";
 import IconCheckBox from "./Checkbox";
+import { deleteTodo, toggleTodo } from "@/utilsLocal";
 
 interface TodoItemProps {
   todo: ITask;
@@ -16,16 +17,19 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, setReloadTodos }) => {
 
   const handleDeleteTodo = async (id: string, event: React.MouseEvent) => {
     event?.stopPropagation();
-    await fetch(`/api/todos?id=${id}`, { method: "DELETE" });
+    //await fetch(`/api/todos?id=${id}`, { method: "DELETE" });
+    deleteTodo(id);
+
     setReloadTodos((state: boolean) => !state);
   };
 
   const handleToggleTodo = async (todo: ITask) => {
-    await fetch(`/api/todos`, {
+    /*await fetch(`/api/todos`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(todo),
-    });
+    });*/
+    toggleTodo(todo);
     setReloadTodos((state: boolean) => !state);
   };
 
