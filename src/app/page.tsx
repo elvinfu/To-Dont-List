@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import TodoList from "@/components/TodoList";
 import { ITask } from "@/types/tasks";
 import { fetchTodos } from "@/utilsLocal";
+import Link from "next/link";
 
 export default function Home() {
   const [todos, setTodos] = useState<ITask[]>([]);
@@ -27,6 +28,20 @@ export default function Home() {
             To-
             <span className="font-bold">Don&apos;t </span>List
           </h1>
+        </div>
+        <div className="flex space-x-4">
+          {/* Sign In Button linking to the custom sign-in page */}
+          <Link href="/signin">
+            <button className="bg-blue-500 text-white py-2 px-4 rounded">
+              Sign In
+            </button>
+          </Link>
+          {/* Sign Up Button linking to the custom sign-up page */}
+          <Link href="/signup">
+            <button className="bg-green-500 text-white py-2 px-4 rounded">
+              Sign Up
+            </button>
+          </Link>
         </div>
       </header>
       <div className="p-16">
