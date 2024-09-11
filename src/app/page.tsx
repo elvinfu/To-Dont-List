@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import TodoList from "@/components/TodoList";
 import { ITask } from "@/types/tasks";
-import { fetchTodos } from "@/utilsLocal";
-import Link from "next/link";
 
 export default function Home() {
   const [todos, setTodos] = useState<ITask[]>([]);
