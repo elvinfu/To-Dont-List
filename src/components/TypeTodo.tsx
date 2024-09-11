@@ -2,7 +2,6 @@
 
 import { useState, FormEvent } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { addTodo } from "@/utilsLocal";
 
 interface TodoFormProps {
   setReloadTodos: React.Dispatch<React.SetStateAction<boolean>>;
@@ -47,7 +46,7 @@ export default function TodoForm({ setReloadTodos }: TodoFormProps) {
       text: displayValue,
       completed: true,
     };
-    /*const res = await fetch("/api/todos", {
+    const res = await fetch("/api/todos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTodo),
@@ -55,9 +54,7 @@ export default function TodoForm({ setReloadTodos }: TodoFormProps) {
 
     if (!res.ok) {
       throw new Error("Failed to add new todo");
-    }*/
-
-    addTodo(newTodo);
+    }
 
     setInputValue("");
     setReloadTodos((state: boolean) => !state);

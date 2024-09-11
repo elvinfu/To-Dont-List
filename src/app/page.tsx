@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import TodoList from "@/components/TodoList";
 import { ITask } from "@/types/tasks";
-import { fetchTodos } from "@/utilsLocal";
 import Link from "next/link";
 
 export default function Home() {
@@ -11,13 +10,12 @@ export default function Home() {
   const [reloadTodos, setReloadTodos] = useState<boolean>(false);
 
   useEffect(() => {
-    /*const fetchTodos = async () => {
+    const fetchTodos = async () => {
       const res = await fetch("/api/todos", { method: "GET" });
       const data = (await res.json()) as ITask[];
       setTodos(data);
-    };*/
-
-    setTodos(fetchTodos());
+    };
+    fetchTodos();
   }, [reloadTodos]);
 
   return (
